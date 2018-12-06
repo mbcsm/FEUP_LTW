@@ -1,5 +1,5 @@
 <?php
-          include("config.php");
+          include("/config.php");
           session_start();
 
           $username = mysqli_real_escape_string($db, $_POST["username"]);
@@ -11,7 +11,7 @@
                               if(password_verify($password, $row["password"])){
                                         $_SESSION['username'] = $username;
                                         $_SESSION['success'] = "You are now logged in";
-                                        header('location: index.php');
+                                        header('location: interface/index.php');
                               }
                               else{
                                         echo "ERROR 1: Could Not LOGIN";

@@ -1,7 +1,6 @@
 <?php
-
-          include("config.php");
           session_start();
+          include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
 
           $username = $_POST['username'];
           $password = $_POST['password'];
@@ -14,7 +13,7 @@
                     $statement->execute();
             	$_SESSION['username'] = $username;
             	$_SESSION['loggedin'] = true;
-            	header('location: index.php');
+                    header('location: interface/index.php');
           }else{
                     echo "ERROR: Could Not Register";
           }
