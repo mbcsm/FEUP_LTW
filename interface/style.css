@@ -68,7 +68,7 @@
 
 #posts {
     color: #202020;
-    font-family: "Georgia", serif;
+    font-family: "Verdana", serif;
 }
 
 .post{
@@ -116,7 +116,7 @@
 }
 
 .comment {
-    font-family: "Georgia", serif;
+    font-family: "Verdana", serif;
     display: flex;
     flex-direction: column;
     border-radius: 0.1em;
@@ -148,3 +148,24 @@
     width: 20%;
     align-self: center;
 }
+
+#register {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
