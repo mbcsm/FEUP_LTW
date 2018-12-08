@@ -1,4 +1,150 @@
+#menu {
+    background-color: black;
+    height: 4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    width: 10%;
+    height: 100%;
+    background-color: red;
+    cursor: pointer;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 4em;
+}
+
+#menu-items {
+    width: 65%;
+    margin: 0 1em 0 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-item {
+    color: white;
+    text-decoration: none;
+}
+
+#submit-post{
+    width: 15%;
+    display: flex;
+    justify-content: flex-end;
+}
+#submit-post a {
+    color: red;
+    text-decoration: none;
+}
+
+#signup-login{    
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.button-signup-login {
+    width: 90%;
+    height: 47%;
+    background-color: red;
+    cursor: pointer;
+    border-width: 1px;
+    border-color: black;
+}
+.button-profile {
+    width: 90%;
+    height: 47%;
+    margin: auto;
+    background-color: red;
+    cursor: pointer;
+    border-width: 1px;
+    border-color: black;
+
+}
+
 #posts {
     color: #202020;
     font-family: "Georgia", serif;
+}
+
+.post{
+    display: flex;
+    border-radius: 0.1em;
+}
+
+.vote {
+    margin: 1% 1% 1% 1%;
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.vote button {
+    padding: 0 0;
+    border-width: 0;
+}
+
+#ratio{
+    display: flex;
+    justify-items: center;
+    margin: 10% 0 10% 0;
+}
+
+.content {    
+    width: 95%;
+    color: white;
+}
+.content-title {
+    color: black;
+    text-decoration: none;
+}
+
+.relevance {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 0 0.3em 0;
+}
+
+#credits {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment {
+    font-family: "Georgia", serif;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.1em;
+}
+.comment .author {
+    margin-left: 2%;
+}
+.comment p {
+    margin-left: 1%;
+}
+.comment .times {
+    display: flex;
+    justify-content: space-around;
+}
+
+#newPost {
+    color: red;
+    display: flex;
+    flex-direction: column;
+}
+#inputs {
+    display: flex;
+    flex-direction: column;
+}
+#inputs * {
+    margin: 1em 0 0 0;
+}
+#inputs #submit {
+    width: 20%;
+    align-self: center;
 }

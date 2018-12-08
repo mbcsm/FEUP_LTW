@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 
-<html>
+<head>
+  <title>RedditX</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../resources/icon.png" sizes="32x32" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet">
+  <link href="layout.css" rel="stylesheet">
+</head>
 
-    <head>
-        <title>RedditX</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet">
-        <link href="layout.css" rel="stylesheet">
-    </head>
+<body>
+  <nav id="menu">
+      <!-- just for the hamburguer menu in responsive layout -->
+      <!-- tudo na mesma linha -->
+      <!-- <label class="hamburger" for="hamburger"></label> -->
+      <button id="logo" href="index.html">
+          <h1>RedditX</h1>
+      </button>
+      <div id="menu-items">
+          <a class="menu-item" href="index.html">New</a>
+          <a class="menu-item" href="index.html">Hot</a>
+          <a class="menu-item" href="index.html">Trending</a>
+          <a class="menu-item" href="index.html">Gore</a>
+          <a class="menu-item" href="index.html">4Chan</a>
+      </div>
+      <div id="submit-post">
+          <a href="newPost.html">Submit New Post</a>
+      </div>
+      <div id="signup-login">
+          <button class="button-signup-login" href="register.html">Sign Up</button>
+          <button class="button-signup-login" href="login.html">Log In</button>
+      </div>
+  </nav>
+  <section id="newPost">
 
-  <body>
-    <header>
-        <h1><a href="index.html">RedditX</a></h1>
-    </header>
+    <header><h2>New Post</h2></header>
 
-    <section id="newPost">
-
-      <header><h2>New Post</h2></header>
-
-      <form method="post" action="/user/action_post.php">
-        <input type="postTitle" name="title" placeholder="postTitle" required>
-        <input type="postText" name="text" placeholder="postText" required>
-        <input type="submit" value="Submit">
-      </form>
-
-      <footer>
-        <p>&copy; RedditX, 2018/2019</p>
-    </footer>
-
-    </section>
-
-  </body>
+    <form method="post" action="action_newPost.php">
+      <div id="inputs">
+        <textarea id="title" type="postTitle" name="postTitle" placeholder="postTitle" rows="3" required></textarea>
+        <textarea id="content" type="postText" name="postText" placeholder="postText" rows="20" required></textarea>
+        <input id="submit" type="submit" value="Submit">
+      </div>
+    </form>
+  </section>
+    
+</body>
 
 </html>
