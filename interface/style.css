@@ -1,5 +1,5 @@
 #menu {
-    background-color: black;
+    background-color: #666666;
     height: 4em;
     display: flex;
     justify-content: space-between;
@@ -110,11 +110,6 @@
     margin: 0 0 0.3em 0;
 }
 
-#credits {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .comment {
     font-family: "Verdana", serif;
     display: flex;
@@ -148,24 +143,31 @@
     width: 20%;
     align-self: center;
 }
-
 #register {
     color: red;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
+#register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#register * {
+    margin: 1em 0 0 0;
+}
 #login {
     color: red;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-#profile {
-    color: red;
+#login form {
     display: flex;
     flex-direction: column;
     align-items: center;
-} 
+}
+#login * {
+    margin: 1em 0 0 0;
+}

@@ -1,16 +1,21 @@
-body {
+html, body{
+    margin: 0; 
     background-color: black;
-    margin: 1em; 
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;
 }
 
 #posts {
     width: 80%;
-    margin: auto;
+    margin: 0 auto 0 auto;
 }
 
 .post {
     background-color: red;
-    margin: 1em auto auto auto;
+    margin: 1em auto 1em auto;
 }
 
 .comment {
@@ -23,8 +28,20 @@ body {
     margin: auto;
 }
 
-footer {
+#profile {
     color: white;
-    width: 80%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0 1em 0;
+    align-items: center;
+}
+#profile h2 {
+    color: red;
+}
+
+#credits {
+    color: black;
+    background-color: #666666;
+    margin-top: auto; 
+    text-align: center;
 }
