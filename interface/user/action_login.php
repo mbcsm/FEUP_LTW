@@ -1,5 +1,5 @@
 <?php
-          include("config.php");
+          include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
           session_start();
 
           $username = mysqli_real_escape_string($db, $_POST["username"]);
@@ -10,8 +10,10 @@
                     while($row = mysqli_fetch_array($result)){
                               if(password_verify($password, $row["password"])){
                                         $_SESSION['username'] = $username;
-                                        $_SESSION['success'] = "You are now logged in";
-                                        header('location: interface/index.php');
+                                	$_SESSION['loggedin'] = true;
+                                        $home_page = 'https://' . $_SERVER['HTTP_HOST'] . '/interface/index.html';
+                                        //echo $home_page;
+                                        header('location: ' . $home_page);
                               }
                               else{
                                         echo "ERROR 1: Could Not LOGIN";

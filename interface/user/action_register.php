@@ -5,6 +5,10 @@
           $username = $_POST['username'];
           $password = $_POST['password'];
 
+          if(empty($username) || empty($password)){
+                    echo "ERROR 1: One or more fields empty";
+          }
+
           if($username && $password){
                     $password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -13,7 +17,8 @@
                     $statement->execute();
             	$_SESSION['username'] = $username;
             	$_SESSION['loggedin'] = true;
-                    header('location: interface/index.php');
+                    $home_page = 'https://' . $_SERVER['HTTP_HOST'] . '/interface/index.html';
+                    header('location: ' . $home_page);
           }else{
                     echo "ERROR: Could Not Register";
           }
