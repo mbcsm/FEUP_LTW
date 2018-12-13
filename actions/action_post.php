@@ -19,8 +19,7 @@
                               $statement = $db->prepare('INSERT INTO story (story_title,story_text, user_id) VALUES (?,?,?)');
                               $statement->bind_param("sss", $title, $text,$user_id);
                               $statement->execute();
-                              $home_page = 'https://' . $_SERVER['HTTP_HOST'] . '/interface/index.php';
-                              header('location: ' . $home_page);
+                              header('location: interface/index.php');
                     }
           }
           else{

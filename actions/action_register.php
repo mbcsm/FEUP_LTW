@@ -10,15 +10,14 @@
           }
 
           if($username && $password){
-               $password = password_hash($password, PASSWORD_DEFAULT);
+                    $password = password_hash($password, PASSWORD_DEFAULT);
 
-               $statement = $db->prepare('INSERT INTO user (username,password) VALUES (?,?)');
-               $statement->bind_param("ss", $username, $password);
-               $statement->execute();
+                    $statement = $db->prepare('INSERT INTO user (username,password) VALUES (?,?)');
+                    $statement->bind_param("ss", $username, $password);
+                    $statement->execute();
             	$_SESSION['username'] = $username;
             	$_SESSION['loggedin'] = true;
-               $home_page = 'https://' . $_SERVER['HTTP_HOST'] . '/interface/index.php';
-               header('location: ' . $home_page);
+                    header('location: interface/index.php');
           }else{
                     echo "ERROR: Could Not Register";
           }

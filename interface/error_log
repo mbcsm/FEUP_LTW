@@ -1,0 +1,6 @@
+[13-Dec-2018 03:31:45 America/Chicago] PHP Fatal error:  Call to undefined method mysqli_stmt::fetchAll() in /home2/simcoder/test.simcoder.com/interface/index.php on line 10
+[13-Dec-2018 03:32:34 America/Chicago] PHP Warning:  mysqli_query() expects parameter 2 to be string, object given in /home2/simcoder/test.simcoder.com/interface/index.php on line 9
+[13-Dec-2018 03:32:34 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home2/simcoder/test.simcoder.com/interface/index.php on line 44
+[13-Dec-2018 03:33:00 America/Chicago] PHP Warning:  mysqli_query() expects parameter 2 to be string, object given in /home2/simcoder/test.simcoder.com/interface/index.php on line 9
+[13-Dec-2018 03:33:00 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home2/simcoder/test.simcoder.com/interface/index.php on line 45
+[13-Dec-2018 03:33:22 America/Chicago] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home2/simcoder/test.simcoder.com/interface/index.php on line 10
