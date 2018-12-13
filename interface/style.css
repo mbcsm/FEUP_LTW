@@ -55,6 +55,7 @@
     border-width: 1px;
     border-color: black;
 }
+
 .button-profile {
     width: 90%;
     height: 47%;
@@ -63,7 +64,6 @@
     cursor: pointer;
     border-width: 1px;
     border-color: black;
-
 }
 
 #posts {
