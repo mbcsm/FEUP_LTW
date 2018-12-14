@@ -59,7 +59,7 @@
           </div>
           <div>
                <section class="addComment">
-                    <form id="comment_form" method="post" action="user/action_comment.php">
+                    <form onsubmit="return send_message()">
                          <input type="text" name="comment-text" placeholder="Comment" required>
                          <input type="submit" value="Submit">
                     </form>
@@ -85,24 +85,23 @@
           </div>
      </body>
      <script>
-     $("comment_form").click( function() {
-          let comment_text = document.querySelector('input[name=comment-text]').value;
-          var post_id = '<?=$_POST['post_id']?>';
+     function send_message() {
+          let comment_text = "post_text=" + document.querySelector('input[name=comment-text]').value;
+          var post_id = "post_id=" +  '<?=$_GET['post_id']?>';
 
           // Delete sent message
           document.querySelector('input[name=comment-text]').value='';
 
+          var request = new XMLHttpRequest();
+          request.open("POST", "/interface/user/action_comment.php", true);
+          request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          request.send(encodeURI(comment_text + "&" + post_id));
           // Send message
-          let request = new XMLHttpRequest();
-          request.open('get', 'action_comment.php?' + encodeForAjax({'post_id': post_id, 'post_text': comment_text}), true);
-          request.addEventListener('load', messagesReceived);
-          request.send();
 
-          event.preventDefault();
           return false;
-     } );
+     };
 
-     messagesReceived(){
+     function messages_received(){
           console.log("comment_made");
      }
 </script>

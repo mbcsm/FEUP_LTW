@@ -39,4 +39,3 @@ INSERT INTO comment (
   1,
   1
 );
-

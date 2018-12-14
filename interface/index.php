@@ -50,7 +50,7 @@
                     </div>
                     <article class="content">
                          <header>
-                              <h1><a class="content-title" href="post.html"><?=$post['story_title']?></a></h1>
+                              <h1><a class="content-title" href="post.php?post_id=<?=$post['story_id'];?>"><?=$post['story_title']?></a></h1>
                          </header>
                          <p><?=$post['story_text']?></p>
                          <footer class="relevance">
