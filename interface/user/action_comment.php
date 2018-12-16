@@ -1,12 +1,11 @@
 <?php
+          error_reporting(E_Error);
           session_start();
           include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
 
           $post_text = mysqli_real_escape_string($db, $_POST["post_text"]);
           $post_id = mysqli_real_escape_string($db, $_POST["post_id"]);
           $username = $_SESSION['username'];
-
-          echo $post_text;
 
           if(empty($post_id) || empty($post_text)){
                     echo "ERROR 1: One or more fields empty";
@@ -22,8 +21,14 @@
                               $statement = $db->prepare('INSERT INTO comment (user_id ,post_id, post_text) VALUES (?,?,?)');
                               $statement->bind_param("sss", $user_id, $post_id, $post_text);
                               $statement->execute();
-                              //$home_page = 'https://' . $_SERVER['HTTP_HOST'] . '/interface/index.php';
-                              //header('location: ' . $home_page);
+
+                              $mComment->text = $post_text;
+                              $mComment->post_id = $post_id;
+                              $mComment->user_id = $user_id;
+                              $mComment->username = $username;
+
+                              $mJSON = json_encode($mComment);
+                              echo $mJSON;
                     }
           }
           else{
