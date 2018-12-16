@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html>
+
+<?php
+     error_reporting(E_Error);
+     include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+     $post_id = $_GET['post_id'];
+     $query =  "SELECT *
+                    FROM comment
+                    WHERE post_id = '$post_id'";
+     $comments = mysqli_query($db, $query);?>
+
+
 <head>
      <title>RedditX</title>
      <meta charset="UTF-8">
@@ -9,6 +20,48 @@
      <link href="layout.css" rel="stylesheet">
 </head>
 <body>
+     <script>
+          function send_comment() {
+               var last_id = "";
+               let comment_text = "post_text=" + document.querySelector('input[name=comment-text]').value;
+               var post_id = "post_id=" +  '<?=$_GET['post_id']?>';
+
+               // Delete sent message
+               document.querySelector('input[name=comment-text]').value='';
+
+               var request = new XMLHttpRequest();
+               request.open("POST", "/interface/user/action_comment.php", true);
+               request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+               request.send(encodeURI(comment_text + "&" + post_id));
+               request.onreadystatechange = function() {
+                    if (this.responseText.trim()!=''){
+                         var commentJson = JSON.parse(this.responseText);
+                         if(last_id != commentJson.post_id){
+                              messages_received(commentJson);
+                              last_id = commentJson.post_id;
+                         }
+                    }
+             };
+
+               return false;
+          };
+
+          function messages_received(commentJson){
+               console.log(commentJson);
+               let comment = document.createElement('section');
+               let section = document.querySelector('#comment_section');
+
+               comment.className = "comment";
+
+               comment.innerHTML =
+                    '<span class="author">' + commentJson.username + '</span>' +
+                    '<p>' + commentJson.text + '</p>' +
+                    '<div class="times"><span class="date">Now</span></div>';
+
+               section.append(comment);
+               section.scrollTop = section.scrollTopMax;
+          }
+     </script>
 
      <nav id="menu">
           <!-- just for the hamburguer menu in responsive layout -->
@@ -58,71 +111,34 @@
                </article>
           </div>
           <div>
-               <section class="addComment">
-                    <form onsubmit="return send_comment()">
-                         <input type="text" name="comment-text" placeholder="Comment" required>
-                         <input type="submit" value="Submit">
-                    </form>
-               </section>
+          <section class="addComment">
+               <form onsubmit="return send_comment()">
+                    <input type="text" name="comment-text" placeholder="Comment" required>
+                    <input type="submit" value="Submit">
+               </form>
+          </section>
           </div>
           <section  id="comment_section">
-               <section class="comment">
-                    <span class="author">UserName</span>
-                    <p>U R MOM GAY!</p>
-                    <div class="times">
-                         <span class="date">5 mins. ago</span>
-                         <a class="editted">5 mins. ago (eddited)</a>
-                    </div>
-               </section>
-               <section class="comment">
-                    <span class="author">UserName</span>
-                    <p>U R MOM GAY!</p>
-                    <div class="times">
-                         <span class="date">5 mins. ago</span>
-                         <a class="editted">5 mins. ago (eddited)</a>
-                    </div>
-               </section>
+               <?php foreach ($comments as $comment) { ?>
+                    <?php
+                         $mComment->text = $comment['post_text'];
+                         $mComment->post_id = $comment['post_id'];
+                         $mComment->comment_id = $comment['comment_id'];
+                         $mComment->user_id = $comment['user_id'];
+
+                         $query = "SELECT username FROM user WHERE user_id = '$mComment->user_id' LIMIT 1";
+                         $users = mysqli_query($db, $query);
+
+                         foreach ($users as $user) {
+                              $mComment->username = $user['username'];
+                         }
+
+                         $mJSON = json_encode($mComment);?>
+                         <script type="text/javascript">
+                              messages_received(<? echo $mJSON?>);
+                         </script>
+               <?php } ?>
           </section>
      </body>
-     <script>
-          function send_comment() {
-               var last_id = "";
-               let comment_text = "post_text=" + document.querySelector('input[name=comment-text]').value;
-               var post_id = "post_id=" +  '<?=$_GET['post_id']?>';
 
-               // Delete sent message
-               document.querySelector('input[name=comment-text]').value='';
-
-               var request = new XMLHttpRequest();
-               request.open("POST", "/interface/user/action_comment.php", true);
-               request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-               request.send(encodeURI(comment_text + "&" + post_id));
-               request.onreadystatechange = function() {
-                    if (this.responseText.trim()!=''){
-                         var commentJson = JSON.parse(this.responseText);
-                         if(last_id != commentJson.post_id){
-                              messages_received(commentJson);
-                              last_id = commentJson.post_id;
-                         }
-                    }
-             };
-
-               return false;
-          };
-
-          function messages_received(commentJson){
-               let comment = document.createElement('section');
-               let section = document.querySelector('#comment_section');
-
-               comment.className = "comment";
-
-               comment.innerHTML =
-                    '<span class="author">' + commentJson.username + '</span>' +
-                    '<p>' + commentJson.text + '</p>' +
-                    '<div class="times"><span class="date">Now</span></div>';
-
-               section.append(comment);
-               section.scrollTop = section.scrollTopMax;
-          }
-     </script>
 </html>
